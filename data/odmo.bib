@@ -1,0 +1,17 @@
+@inproceedings{10.1145/3503161.3548287,
+author = {Lu, Qiujing and Zhang, Yipeng and Lu, Mingjian and Roychowdhury, Vwani},
+title = {Action-Conditioned On-Demand Motion Generation},
+year = {2022},
+isbn = {9781450392037},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3503161.3548287},
+doi = {10.1145/3503161.3548287},
+abstract = {We propose a novel framework, On-Demand MOtion Generation (ODMO), for generating realistic and diverse long-term 3D human motion sequences conditioned only on action types with an additional capability of customization. ODMO shows improvements over SOTA approaches on all traditional motion evaluation metrics when evaluated on three public datasets (HumanAct12, UESTC, and MoCap). Furthermore, we provide both qualitative evaluations and quantitative metrics demonstrating several first-known customization capabilities afforded by our framework, including mode discovery, interpolation, and trajectory customization. These capabilities significantly widen the spectrum of potential applications of such motion generation models. The novel on-demand generative capabilities are enabled by innovations in both the encoder and decoder architectures: (i) Encoder: Utilizing contrastive learning in low-dimensional latent space to create a hierarchical embedding of motion sequences, where not only the codes of different action types form different groups, but within an action type, codes of similar inherent patterns (motion styles) cluster together, making them readily discoverable; (ii) Decoder: Using a hierarchical decoding strategy where the motion trajectory is reconstructed first and then used to reconstruct the whole motion sequence. Such an architecture enables effective trajectory control. Our code is released on the Github page: https://github.com/roychowdhuryresearch/ODMO https://github.com/roychowdhuryresearch/ODMO},
+booktitle = {Proceedings of the 30th ACM International Conference on Multimedia},
+pages = {2249–2257},
+numpages = {9},
+keywords = {motion customization, 3D motion generation, 3D animation},
+location = {Lisboa, Portugal},
+series = {MM '22}
+}
