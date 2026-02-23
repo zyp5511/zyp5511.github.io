@@ -162,7 +162,7 @@ table.papers-table td[valign="middle"][width="75%"] {
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 18px 22px !important;
+  padding: 14px 18px !important;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -309,7 +309,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 .selected-card {
   display: grid;
   grid-template-columns: 160px 1fr;
-  gap: 24px;
+  gap: 16px;
   align-items: start;
 }
 
@@ -363,7 +363,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 
 @media (max-width: 720px) {
   table.papers-table {
-    border-spacing: 0 16px;
+    border-spacing: 0 8px;
   }
 
   table[width="800"] {
