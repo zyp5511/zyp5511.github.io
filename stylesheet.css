@@ -19,6 +19,10 @@ a {
   font-size: 14px
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   line-height: 1.6;
@@ -34,6 +38,7 @@ table[width="800"] {
   margin-top: 40px;
   margin-bottom: 40px;
   border-radius: 16px;
+  box-sizing: border-box;
 }
 
 table[width="100%"]:not(.papers-table) td {
@@ -147,7 +152,7 @@ span.highlight {
 
 table.papers-table {
   border-collapse: separate;
-  border-spacing: 0 8px;
+  border-spacing: 0 10px;
 }
 
 table.papers-table td[valign="middle"][width="75%"] {
@@ -160,6 +165,15 @@ table.papers-table td[valign="middle"][width="75%"] {
   padding: 18px 22px !important;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+table.papers-table td[valign="middle"][width="75%"] p:empty {
+  display: none;
+  margin: 0;
+}
+
+table.papers-table td[valign="middle"][width="75%"] p {
+  margin: 0;
 }
 
 table.papers-table td[valign="middle"][width="75%"]:hover {
@@ -348,6 +362,10 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 }
 
 @media (max-width: 720px) {
+  table.papers-table {
+    border-spacing: 0 8px;
+  }
+
   table[width="800"] {
     width: 96vw;
     padding: 18px 14px;
@@ -362,9 +380,15 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   }
 
   .intro-table,
-  .intro-table tbody,
-  .intro-table tr {
+  .intro-table tbody {
     display: block;
+    width: 100%;
+  }
+
+  .intro-table tr {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
     width: 100%;
   }
 
@@ -383,6 +407,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 
   .intro-photo-cell {
     padding-top: 6px !important;
+    padding-bottom: 16px !important;
   }
 
   .profile-photo {
@@ -390,6 +415,11 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
     max-width: 100%;
     margin: 0 auto;
     display: block;
+  }
+
+  table[width="100%"]:not(.papers-table) td {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   table.papers-table td[valign="middle"][width="75%"] {
