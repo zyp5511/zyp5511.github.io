@@ -1,9 +1,0 @@
-title: Yipeng Zhang
-description: Personal homepage and research/project pages
-baseurl: ""
-url: "https://zyp5511.github.io"
-markdown: kramdown
-kramdown:
-  input: GFM
-exclude:
-  - README.md

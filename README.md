@@ -1,29 +1,25 @@
-# Personal Homepage + REFLEX Project Page
+# Yipeng Zhang Homepage
 
-This repository is currently maintained as a static website (no Jekyll required for normal preview).
+Personal website source for https://zyp5511.github.io, including the REFLEX project page.
 
-## Local preview
-
-From the repository root, run:
+## Run locally
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open:
+Open:
 
-- `http://localhost:8000/` (homepage)
-- `http://localhost:8000/reflex/` (REFLEX project page)
+- http://localhost:8000/
+- http://localhost:8000/reflex/
 
-## Structure
+## Main files
 
-- `index.html`: personal homepage
-- `stylesheet.css`: homepage styles
-- `reflex/index.html`: REFLEX project page (standalone static HTML)
-- `assets/css/styles.css`: REFLEX page styles
-- `assets/fig/`: REFLEX figure assets
-- `img/`: homepage and publication thumbnails
+- `index.html` - homepage
+- `stylesheet.css` - homepage styles
+- `reflex/index.html` - REFLEX page
+- `assets/css/styles.css` - REFLEX styles
+- `assets/fig/` - REFLEX figures
+- `img/` - profile and publication images
 
-## Notes
-
-- Legacy Jekyll files (`_config.yml`, `_layouts/`) are kept for compatibility, but local preview does not depend on Jekyll.
+This site is maintained as plain static HTML/CSS.
