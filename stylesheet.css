@@ -364,24 +364,17 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 @media (max-width: 720px) {
   table.papers-table {
     border-collapse: separate;
-    border-spacing: 0;
+    border-spacing: 0 6px;
     width: 100%;
   }
 
   table.papers-table tbody {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: table-row-group !important;
     width: 100%;
   }
 
-  table.papers-table tr,
-  table.papers-table td {
-    display: block;
-    width: 100% !important;
-  }
-
   table.papers-table tr {
+    display: table-row !important;
     margin: 0;
   }
 
@@ -442,6 +435,8 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   }
 
   table.papers-table td[valign="middle"][width="75%"] {
+    display: table-cell !important;
+    width: auto !important;
     padding: 10px 10px !important;
     border-radius: 10px;
     margin: 0;
