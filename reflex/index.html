@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REFLEX | Yipeng Zhang</title>
+  <meta name="description" content="REFLEX is a search-engine-in-the-loop reinforcement learning framework for catalog-grounded e-commerce query expansion." />
+  <link rel="icon" type="image/jpeg" href="../assets/fig/Icon.jpeg" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+
+    <header class="hero">
+      <div class="container">
+        <h2 class="venue">WSDM 2026</h2>
+        <h1 class="project-title">REFLEX: Reinforcement Feedback Learning with Large Language Models for E-commerce Query Expansion</h1>
+        <p class="authors">
+          Yipeng Zhang (<a href="mailto:zyp5511@gmail.com">zyp5511@gmail.com</a>) · Bowen Liu (<a href="mailto:boweliu@ebay.com">boweliu@ebay.com</a>) · Xiaoshuang Zhang (<a href="mailto:xiaoszhang@ebay.com">xiaoszhang@ebay.com</a>) · Aritra Mandal (<a href="mailto:arimandal@ebay.com">arimandal@ebay.com</a>) · Canran Xu (<a href="mailto:canxu@ebay.com">canxu@ebay.com</a>) · Zhe Wu (<a href="mailto:zwu1@ebay.com">zwu1@ebay.com</a>)
+        </p>
+        <div class="affiliation-row">
+          <img src="../assets/fig/EBay_logo.svg.png" alt="eBay logo" class="company-logo" />
+        </div>
+        <div class="links">
+          <a href="../index.html">Back to Homepage</a>
+          <a href="https://doi.org/10.1145/3773966.3779381" target="_blank" rel="noreferrer">DOI</a>
+          <a href="#citation">Citation</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section>
+        <h2>Abstract</h2>
+        <p>
+          Query expansion is a fundamental component of e-commerce search, yet it remains challenging in production settings due to short and ambiguous user queries, incomplete historical supervision, and constantly evolving product catalogs. Traditional expansion methods based on semantic similarity or few-shot prompting fail to capture domain-specific constraints, while existing reinforcement learning approaches often optimize for narrow objectives without interacting with real search systems. REFLEX is a catalog-grounded framework that trains a large language model through search-engine-in-the-loop reinforcement learning. It grounds reasoning in the retrieval set from the initial query and optimizes expansions with real-time search feedback using relevance alignment and retrieval breadth rewards. Experiments on large-scale industrial data show substantial gains in semantic coverage and retrieval effectiveness over strong baselines, and online A/B testing confirms production impact on relevance, diversity, and user engagement.
+        </p>
+      </section>
+
+      <section>
+        <h2>Method Overview</h2>
+        <figure>
+          <img src="../assets/fig/figure1_wsdm.jpg" alt="REFLEX framework overview" />
+          <figcaption>REFLEX uses catalog-grounded prompting and search feedback-driven GRPO optimization.</figcaption>
+        </figure>
+        <ul>
+          <li><strong>Catalog-grounded expansion:</strong> build expansions from retrieved product context (title + attributes) to improve catalog compliance.</li>
+          <li><strong>Structured generation:</strong> model outputs <code>&lt;think&gt;</code> reasoning and <code>&lt;answer&gt;</code> JSON expansions for downstream execution.</li>
+          <li><strong>Reward design:</strong> combine relevance alignment and retrieval breadth, with schema-validity gating.</li>
+          <li><strong>Policy learning:</strong> optimize one-to-many expansion sets with Group Relative Policy Optimization (GRPO).</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Main Results (Offline)</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Backbone</th>
+                <th>ΔCoverage (%)</th>
+                <th>ΔRel (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>EBQE</td>
+                <td>Sentence-BERT</td>
+                <td>8.99 ± 0.00</td>
+                <td>26.01 ± 0.00</td>
+              </tr>
+              <tr>
+                <td>GPT-4.1 (few-shot)</td>
+                <td>OpenAI Proprietary</td>
+                <td>16.51 ± 2.03</td>
+                <td>27.82 ± 2.01</td>
+              </tr>
+              <tr>
+                <td>SFT-LLM</td>
+                <td>LLaMA 3.2-3B</td>
+                <td>19.22 ± 0.09</td>
+                <td>15.10 ± 1.40</td>
+              </tr>
+              <tr class="highlight">
+                <td>REFLEX</td>
+                <td>LLaMA 3.2-3B</td>
+                <td>72.84 ± 3.91</td>
+                <td>32.40 ± 4.37</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Ablation Study</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>WarmUp</th>
+                <th>GRPO</th>
+                <th>Backbone</th>
+                <th>ΔCoverage (%)</th>
+                <th>ΔRel (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>No</td>
+                <td>No</td>
+                <td>LLaMA 3.2-3B</td>
+                <td>12.80 ± 0.50</td>
+                <td>8.93 ± 0.40</td>
+              </tr>
+              <tr>
+                <td>No</td>
+                <td>Yes</td>
+                <td>LLaMA 3.2-3B</td>
+                <td>57.45 ± 4.00</td>
+                <td>25.20 ± 5.00</td>
+              </tr>
+              <tr>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>LLaMA 3.2-1B</td>
+                <td>29.41 ± 2.28</td>
+                <td>14.50 ± 1.13</td>
+              </tr>
+              <tr class="highlight">
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>LLaMA 3.2-3B</td>
+                <td>72.84 ± 3.91</td>
+                <td>32.40 ± 4.37</td>
+              </tr>
+              <tr>
+                <td>Yes</td>
+                <td>Yes</td>
+                <td>LLaMA 3.1-8B</td>
+                <td>76.00 ± 3.80</td>
+                <td>34.00 ± 3.90</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>Online Evaluation</h2>
+        <p>
+          In a two-week production A/B test (10% traffic control vs 10% traffic treatment), REFLEX served cached expansions for roughly 600K high-frequency queries under latency constraints. The treatment group achieved statistically significant gains in click-through rate and reduced query abandonment, with consistent positive impact through the conversion funnel and measurable improvement in gross merchandise value (exact lift values are confidential).
+        </p>
+      </section>
+
+      <section>
+        <h2>Ethical Considerations</h2>
+        <p>
+          REFLEX mitigates online privacy and adversarial risks by serving only pre-vetted, offline cached expansions in production. Governance focuses on fairness auditing (avoiding seller favoritism), integration with platform safety filters, and versioned cache updates with monitoring, rollback, and human review for sensitive categories.
+        </p>
+      </section>
+
+      <section id="citation">
+        <h2>Citation</h2>
+        <pre><code>@inproceedings{zhang2026reflex,
+  title     = {REFLEX: Reinforcement Feedback Learning with Large Language Models for E-commerce Query Expansion},
+  author    = {Zhang, Yipeng and Liu, Bowen and Zhang, Xiaoshuang and Mandal, Aritra and Xu, Canran and Wu, Zhe},
+  booktitle = {Proceedings of the ACM International Conference on Web Search and Data Mining (WSDM)},
+  year      = {2026},
+  doi       = {10.1145/3773966.3779381}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© 2026 REFLEX Project Page</p>
+      </div>
+    </footer>
+
+</body>
+</html>
