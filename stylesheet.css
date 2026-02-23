@@ -363,7 +363,24 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 
 @media (max-width: 720px) {
   table.papers-table {
-    border-spacing: 0 2px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+  }
+
+  table.papers-table tbody,
+  table.papers-table tr,
+  table.papers-table td {
+    display: block;
+    width: 100% !important;
+  }
+
+  table.papers-table tr {
+    margin: 0 0 8px;
+  }
+
+  table.papers-table tr:last-child {
+    margin-bottom: 0;
   }
 
   table[width="800"] {
@@ -425,6 +442,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   table.papers-table td[valign="middle"][width="75%"] {
     padding: 10px 10px !important;
     border-radius: 10px;
+    margin: 0;
   }
 
   .year-block .papers-table {
