@@ -112,6 +112,14 @@ name {
   margin-bottom: 6px;
 }
 
+.intro-photo-cell {
+  text-align: center;
+}
+
+.profile-photo {
+  border-radius: 12px;
+}
+
 .one {
   width: 160px;
   height: 160px;
@@ -340,6 +348,64 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 }
 
 @media (max-width: 720px) {
+  table[width="800"] {
+    width: 96vw;
+    padding: 18px 14px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    border-radius: 12px;
+  }
+
+  .profile-name {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .intro-table,
+  .intro-table tbody,
+  .intro-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .intro-table td {
+    display: block;
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .intro-text p {
+    margin: 0 0 10px;
+  }
+
+  .intro-photo-cell {
+    padding-top: 6px !important;
+  }
+
+  .profile-photo {
+    width: min(230px, 72vw) !important;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  table.papers-table td[valign="middle"][width="75%"] {
+    padding: 14px 14px !important;
+    border-radius: 10px;
+  }
+
+  table.papers-table papertitle {
+    font-size: 16px;
+  }
+
+  table.papers-table td[valign="middle"][width="75%"] br + a,
+  table.papers-table td[valign="middle"][width="75%"] br + a ~ a {
+    margin-bottom: 6px;
+  }
+
   .year-nav {
     gap: 6px;
   }
