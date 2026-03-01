@@ -367,10 +367,20 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 
 .visitor-map-card {
   margin-top: 12px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 14px 18px;
+  padding: 10px;
   background: #ffffff;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#visitor-map-card > * {
+  max-width: 100%;
 }
 
 .visitor-map-note {
@@ -502,6 +512,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   }
 
   .visitor-map-card {
-    padding: 10px 12px;
+    max-width: 250px;
+    padding: 8px;
   }
 }
