@@ -361,6 +361,24 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.visitor-map-block {
+  margin-top: 28px;
+}
+
+.visitor-map-card {
+  margin-top: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 18px;
+  background: #ffffff;
+}
+
+.visitor-map-note {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
 @media (max-width: 720px) {
   table.papers-table {
     border-collapse: separate;
@@ -477,5 +495,13 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 
   .paper-thumb-img {
     padding: 2px;
+  }
+
+  .visitor-map-block {
+    margin-top: 18px;
+  }
+
+  .visitor-map-card {
+    padding: 10px 12px;
   }
 }
