@@ -211,3 +211,15 @@ footer {
   text-align: center;
   color: var(--muted);
 }
+
+.reflex-visitor-map {
+  margin: 10px auto 0;
+  max-width: 280px;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.reflex-visitor-map > * {
+  max-width: 100%;
+}
