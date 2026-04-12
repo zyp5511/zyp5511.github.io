@@ -1,3 +1,24 @@
+:root {
+  --page-bg: #edf4fb;
+  --panel-bg: rgba(255, 255, 255, 0.88);
+  --panel-border: rgba(148, 163, 184, 0.24);
+  --ink-strong: #0f172a;
+  --ink: #334155;
+  --ink-soft: #64748b;
+  --line: #dbe5f1;
+  --line-strong: #cbd5e1;
+  --blue: #2563eb;
+  --blue-soft: #eff6ff;
+  --blue-tint: #dbeafe;
+  --orange: #f09228;
+  --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.10);
+  --shadow-md: 0 10px 26px rgba(15, 23, 42, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 a {
   color: #1772d0;
   text-decoration: none;
@@ -5,7 +26,7 @@ a {
 
 a:focus,
 a:hover {
-  color: #f09228;
+  color: var(--orange);
   text-decoration: none;
 }
 
@@ -26,19 +47,25 @@ a {
 body {
   margin: 0;
   line-height: 1.6;
-  color: #334155;
-  background-color: #f8fafc;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(147, 197, 253, 0.28), transparent 28%),
+    radial-gradient(circle at top right, rgba(186, 230, 253, 0.24), transparent 24%),
+    linear-gradient(180deg, #f8fbff 0%, var(--page-bg) 100%);
 }
 
 table[width="800"] {
-  width: min(860px, 92vw);
-  background-color: #ffffff;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  padding: 40px 50px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  border-radius: 16px;
+  width: min(940px, 92vw);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.94) 100%);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--shadow-lg);
+  padding: 42px 54px;
+  margin-top: 36px;
+  margin-bottom: 36px;
+  border-radius: 24px;
   box-sizing: border-box;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 table[width="100%"]:not(.papers-table) td {
@@ -69,42 +96,85 @@ name {
 
 .profile-name {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 700;
-  margin: 0 0 12px;
-  color: #0f172a;
+  letter-spacing: -0.03em;
+  margin: 0 0 8px;
+  color: var(--ink-strong);
+}
+
+.profile-kicker {
+  margin: 0 0 20px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .section-heading {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
   margin: 0;
-  color: #0f172a;
+  color: var(--ink-strong);
+  letter-spacing: -0.02em;
+}
+
+.section-intro {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+
+.year-nav-wrap {
+  position: sticky;
+  top: 12px;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 12px 14px;
+  border: 1px solid rgba(191, 219, 254, 0.72);
+  border-radius: 18px;
+  background: rgba(248, 250, 252, 0.88);
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.year-nav-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
 
 .year-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
+  gap: 10px;
+  margin-top: 0;
 }
 
 .year-nav a {
   font-size: 12px;
-  font-weight: 600;
-  color: #334155;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  font-weight: 700;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 4px 10px;
+  padding: 6px 12px;
   line-height: 1;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .year-nav a:hover {
-  color: #0f172a;
-  border-color: #cbd5e1;
-  background: #eef2ff;
+  color: var(--ink-strong);
+  border-color: #93c5fd;
+  background: var(--blue-soft);
 }
 
 .bio-highlights {
@@ -121,8 +191,68 @@ name {
   text-align: center;
 }
 
+.intro-meta-cell {
+  padding-top: 2px !important;
+  padding-bottom: 6px !important;
+  text-align: center;
+}
+
+.intro-text p {
+  margin: 0 0 14px;
+}
+
 .profile-photo {
-  border-radius: 12px;
+  border-radius: 22px;
+  border: 1px solid rgba(191, 219, 254, 0.8);
+  box-shadow: 0 18px 36px rgba(37, 99, 235, 0.14);
+}
+
+.intro-pills {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 10px 0 16px;
+}
+
+.intro-pills span {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(191, 219, 254, 0.9);
+  background: linear-gradient(180deg, rgba(239, 246, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%);
+  color: #1e40af;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.profile-links {
+  margin: 0;
+  text-align: center;
+}
+
+.profile-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 98px;
+  margin: 0 4px 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+}
+
+.profile-links a:hover {
+  color: #ffffff;
+  background: var(--blue);
+  border-color: var(--blue);
 }
 
 .one {
@@ -159,12 +289,12 @@ table.papers-table td[valign="middle"][width="75%"] {
   display: block;
   width: 100% !important;
   box-sizing: border-box;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 14px 18px !important;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px 20px !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 table.papers-table td[valign="middle"][width="75%"] p:empty {
@@ -177,15 +307,15 @@ table.papers-table td[valign="middle"][width="75%"] p {
 }
 
 table.papers-table td[valign="middle"][width="75%"]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(15, 23, 42, 0.08);
-  border-color: #cbd5e1;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--line-strong);
 }
 
 table.papers-table papertitle {
-  font-size: 17px;
-  line-height: 1.3;
-  color: #0f172a;
+  font-size: 18px;
+  line-height: 1.28;
+  color: var(--ink-strong);
 }
 
 table.papers-table td a {
@@ -206,7 +336,7 @@ table.papers-table td em {
 
 .cofirst-note {
   font-size: 11px;
-  color: #6b7280;
+  color: #64748b;
 }
 
 .section-subtitle {
@@ -220,17 +350,20 @@ table.papers-table td em {
 }
 
 .year-block {
-  margin-top: 32px;
+  margin-top: 40px;
   position: relative;
+  scroll-margin-top: 90px;
 }
 
 .year-title {
   margin-top: 0;
-  font-size: 24px;
-  color: #0f172a;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 8px;
-  margin-bottom: 16px;
+  font-size: 26px;
+  color: var(--ink-strong);
+  border-bottom: none;
+  padding-bottom: 0;
+  padding-left: 14px;
+  border-left: 4px solid #93c5fd;
+  margin-bottom: 18px;
   display: block;
 }
 
@@ -251,7 +384,7 @@ table.papers-table td em {
   left: 0;
   right: 0;
   height: 1px;
-  background: #e2e8f0;
+  background: var(--line);
   z-index: 0;
 }
 
@@ -259,9 +392,9 @@ table.papers-table td em {
   font-family: 'Lato', Verdana, Helvetica, sans-serif;
   font-size: 13px;
   font-weight: 600;
-  color: #64748b;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--line);
   border-radius: 20px;
   padding: 6px 20px;
   cursor: pointer;
@@ -287,12 +420,12 @@ table.papers-table td[valign="middle"][width="75%"] br + a,
 table.papers-table td[valign="middle"][width="75%"] br + a ~ a {
   display: inline-block;
   font-size: 12px;
-  font-weight: 600;
-  color: #3b82f6;
-  background: #eff6ff;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-soft);
   border: 1px solid #bfdbfe;
-  border-radius: 6px;
-  padding: 4px 12px;
+  border-radius: 999px;
+  padding: 5px 12px;
   margin-top: 8px;
   margin-right: 6px;
   transition: all 0.2s ease;
@@ -309,24 +442,30 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 .selected-card {
   display: grid;
   grid-template-columns: 160px 1fr;
-  gap: 16px;
+  gap: 20px;
   align-items: start;
+}
+
+.year-block > .papers-table td[valign="middle"][width="75%"] {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border-color: rgba(191, 219, 254, 0.9);
+  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.08);
 }
 
 .paper-thumb {
   width: 160px;
   aspect-ratio: 3 / 2;
-  border-radius: 8px;
-  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  border: 1px solid rgba(191, 219, 254, 0.72);
   overflow: hidden;
-  background: #ffffff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin-top: 4px;
+  margin-top: 2px;
   position: relative;
 }
 
@@ -341,28 +480,28 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   display: block;
   object-fit: contain;
   object-position: center;
-  padding: 4px;
+  padding: 6px;
 }
 
 .paper-badge {
   position: absolute;
-  top: 6px;
-  left: 6px;
-  background: rgba(15, 23, 42, 0.75);
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.92) 0%, rgba(15, 23, 42, 0.86) 100%);
   color: #ffffff;
   font-size: 10px;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 4px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 999px;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 10;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
 }
 
 .visitor-map-block {
-  margin-top: 28px;
+  margin-top: 34px;
 }
 
 .visitor-map-card {
@@ -370,13 +509,14 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   max-width: 320px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 10px;
-  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 12px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
   display: flex;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
 #visitor-map-card > * {
@@ -385,8 +525,18 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 
 .visitor-map-note {
   margin: 0;
-  color: #64748b;
+  color: var(--ink-soft);
   font-size: 13px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  table[width="800"] {
+    animation: page-enter 480ms ease both;
+  }
+
+  .year-block > .papers-table td[valign="middle"][width="75%"] {
+    animation: card-rise 420ms ease both;
+  }
 }
 
 @media (max-width: 720px) {
@@ -411,12 +561,17 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
     padding: 18px 14px;
     margin-top: 14px;
     margin-bottom: 14px;
-    border-radius: 12px;
+    border-radius: 18px;
   }
 
   .profile-name {
-    font-size: 28px;
+    font-size: 32px;
     margin-bottom: 8px;
+  }
+
+  .profile-kicker {
+    font-size: 14px;
+    margin-bottom: 16px;
   }
 
   .intro-table,
@@ -455,6 +610,36 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
     max-width: 100%;
     margin: 0 auto;
     display: block;
+  }
+
+  .intro-pills {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .intro-meta-cell {
+    text-align: left;
+    padding-bottom: 2px !important;
+  }
+
+  .profile-links {
+    text-align: left;
+  }
+
+  .profile-links a {
+    min-width: 0;
+    margin-right: 8px;
+    margin-left: 0;
+  }
+
+  .section-intro {
+    margin-top: 6px;
+  }
+
+  .year-nav-wrap {
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 14px;
   }
 
   table[width="100%"]:not(.papers-table) td {
@@ -499,7 +684,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
 
   .paper-thumb {
     width: 100%;
-    max-width: 180px;
+    max-width: 210px;
     margin: 0 auto;
   }
 
@@ -514,5 +699,29 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   .visitor-map-card {
     max-width: 250px;
     padding: 8px;
+  }
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
