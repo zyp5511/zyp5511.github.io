@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEER | Yipeng Zhang</title>
+  <meta
+    name="description"
+    content="SEER is a set encoding framework that compresses large collections of near-duplicate e-commerce items into a single learned token for efficient LLM reasoning."
+  />
+  <link rel="icon" type="image/jpeg" href="../assets/fig/Icon.jpeg" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <h2 class="venue">WWW 2026</h2>
+      <h1 class="project-title">SEER: Set Encoding for Efficient Representation in Large-Scale E-commerce</h1>
+      <p class="authors">
+        Yining Lin (<a href="mailto:yinilin@ebay.com">yinilin@ebay.com</a>) ·
+        Yuming Shen (<a href="mailto:yumishen@ebay.com">yumishen@ebay.com</a>) ·
+        Yipeng Zhang (<a href="mailto:yipezhang@ebay.com">yipezhang@ebay.com</a>) ·
+        Canran Xu (<a href="mailto:canxu@ebay.com">canxu@ebay.com</a>)
+      </p>
+      <div class="affiliation-row">
+        <img src="../assets/fig/EBay_logo.svg.png" alt="eBay logo" class="company-logo" />
+      </div>
+      <div class="links">
+        <a href="../index.html">Back to Homepage</a>
+        <a href="https://dl.acm.org/doi/10.1145/3774904.3792958" target="_blank" rel="noreferrer">Paper</a>
+        <a href="#citation">Citation</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Abstract</h2>
+      <p>
+        Large Language Models (LLMs) perform well across many tasks but degrade when processing large collections of repetitive or highly similar inputs, a common scenario in applications such as near-duplicate search results and large e-commerce catalogs. In these settings, concatenation-based approaches such as long-context prompting and supervised fine-tuning suffer from attention saturation and diminished signal-to-noise ratio, causing models to miss subtle but important distinctions as input size grows. SEER (Set Encoding for Efficient Representation) addresses this problem by compressing a variable-sized item set into a single learned token that can be injected directly into an LLM. Experiments on a large-scale e-commerce dataset show that SEER substantially outperforms in-context and fine-tuned LLM baselines while remaining stable even when processing thousands of highly similar items.
+      </p>
+    </section>
+
+    <section>
+      <h2>Why SEER Matters</h2>
+      <ul>
+        <li><strong>Built for dense item sets:</strong> targets product groups where listings are highly redundant yet differ in fine-grained attributes such as storage, color, or carrier.</li>
+        <li><strong>Single-token set interface:</strong> replaces prompt concatenation with one learned summary token that preserves both shared signals and subtle contrasts.</li>
+        <li><strong>Task-conditioned encoding:</strong> uses learnable queries to extract different set views for attribution grounding, set summarization, conflict detection, and reconstruction.</li>
+        <li><strong>Industry-scale robustness:</strong> maintains strong performance on long input sets far beyond the training range, which is critical for large e-commerce catalogs.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Method Overview</h2>
+      <figure>
+        <img src="../assets/fig/seer_figure1.png" alt="SEER framework overview" />
+        <figcaption>SEER compresses a large set of item embeddings into a learned summary token that is injected into the LLM.</figcaption>
+      </figure>
+      <ul>
+        <li><strong>Frozen item encoder:</strong> each listing is first mapped into a semantic embedding using an in-house BERT-based encoder.</li>
+        <li><strong>SEER adapter:</strong> multi-head attention with learnable task queries aggregates the set into a compact task-conditioned representation.</li>
+        <li><strong>Neural injection:</strong> the learned vector replaces a special <code>&lt;summary_token&gt;</code> embedding in the prompt, letting the LLM consume set-level semantics directly.</li>
+        <li><strong>Staged alignment:</strong> first align the adapter to the frozen LLM, then jointly fine-tune both modules for smooth cross-modal integration.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Main Results</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Approach</th>
+              <th>Acc_attr</th>
+              <th>Acc_sum / BERTScore</th>
+              <th>F1_conf</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GPT-4.1-mini (ICL)</td>
+              <td>0.359</td>
+              <td>0.091 / 0.477</td>
+              <td>0.612</td>
+            </tr>
+            <tr>
+              <td>GPT-5 (ICL)</td>
+              <td>0.547</td>
+              <td>0.168 / 0.673</td>
+              <td>0.733</td>
+            </tr>
+            <tr>
+              <td>LLaMA-3.1-8B (SFT)</td>
+              <td>0.847</td>
+              <td>0.188 / 0.567</td>
+              <td>0.916</td>
+            </tr>
+            <tr class="highlight">
+              <td>SEER</td>
+              <td>0.889</td>
+              <td>0.401 / 0.709</td>
+              <td>0.976</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        SEER improves over both in-context prompting and supervised fine-tuning across all three evaluation objectives. The largest gain appears in set summarization, where the summary token preserves enough structure for the model to enumerate distinct product concepts without prompt bloat.
+      </p>
+    </section>
+
+    <section>
+      <h2>Robustness to Large Input Sets</h2>
+      <figure>
+        <img src="../assets/fig/seer_lineplots.png" alt="SEER robustness against increasing input set size" />
+        <figcaption>SEER remains stable as the input set grows, while the fine-tuned LLM baseline degrades under longer and more repetitive inputs.</figcaption>
+      </figure>
+      <p>
+        The evaluation set contains up to 1,000 items per sample, far beyond the 100-item maximum used during training. Even under this distribution shift, SEER preserves strong attribute grounding, summarization quality, and conflict detection performance, highlighting its suitability for real-world large-scale product collections.
+      </p>
+    </section>
+
+    <section>
+      <h2>Experimental Setting</h2>
+      <ul>
+        <li><strong>Dataset:</strong> 523,422 unique cellphone listings from eBay.com, covering 2,706 product concepts.</li>
+        <li><strong>Training data:</strong> 1.5 million examples across attribution grounding, set summarization, conflict detection, and information reconstruction.</li>
+        <li><strong>Backbone:</strong> LLaMA-3.1-8B-Instruct with a 4-layer multi-head SEER adapter.</li>
+        <li><strong>Baselines:</strong> GPT-5, GPT-4.1-mini, and a supervised fine-tuned LLaMA-3.1-8B baseline based on prompt concatenation.</li>
+      </ul>
+    </section>
+
+    <section id="citation">
+      <h2>Citation</h2>
+      <pre><code>@inproceedings{lin2026seer,
+  title     = {SEER: Set Encoding for Efficient Representation in Large-Scale E-commerce},
+  author    = {Lin, Yining and Shen, Yuming and Zhang, Yipeng and Xu, Canran},
+  booktitle = {Proceedings of the ACM Web Conference 2026 (WWW '26)},
+  year      = {2026},
+  address   = {Dubai, United Arab Emirates},
+  doi       = {10.1145/3774904.3792958}
+}</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 SEER Project Page</p>
+      <div class="reflex-visitor-map">
+        <script type="text/javascript" id="mapmyvisitors-seer" src="https://mapmyvisitors.com/map.js?d=B4QPvqGgtHkN2f65e5F0LHpwlbg9FSpW0xra9cwmITg&cl=ffffff&w=a"></script>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
