@@ -285,7 +285,7 @@ table.papers-table {
   border-spacing: 0 10px;
 }
 
-table.papers-table td[valign="middle"][width="75%"] {
+table.papers-table td {
   display: block;
   width: 100% !important;
   box-sizing: border-box;
@@ -297,16 +297,16 @@ table.papers-table td[valign="middle"][width="75%"] {
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-table.papers-table td[valign="middle"][width="75%"] p:empty {
+table.papers-table td p:empty {
   display: none;
   margin: 0;
 }
 
-table.papers-table td[valign="middle"][width="75%"] p {
+table.papers-table td p {
   margin: 0;
 }
 
-table.papers-table td[valign="middle"][width="75%"]:hover {
+table.papers-table td:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
   border-color: var(--line-strong);
@@ -416,8 +416,8 @@ table.papers-table td em {
   display: none;
 }
 
-table.papers-table td[valign="middle"][width="75%"] br + a,
-table.papers-table td[valign="middle"][width="75%"] br + a ~ a {
+table.papers-table td br + a,
+table.papers-table td br + a ~ a {
   display: inline-block;
   font-size: 12px;
   font-weight: 700;
@@ -431,8 +431,8 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a {
   transition: all 0.2s ease;
 }
 
-table.papers-table td[valign="middle"][width="75%"] br + a:hover,
-table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
+table.papers-table td br + a:hover,
+table.papers-table td br + a ~ a:hover {
   color: #ffffff;
   background: #2563eb;
   border-color: #2563eb;
@@ -446,7 +446,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   align-items: start;
 }
 
-.year-block > .papers-table td[valign="middle"][width="75%"] {
+.year-block > .papers-table td {
   background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
   border-color: rgba(191, 219, 254, 0.9);
   box-shadow: 0 14px 30px rgba(37, 99, 235, 0.08);
@@ -481,6 +481,30 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
   object-fit: contain;
   object-position: center;
   padding: 6px;
+}
+
+.paper-figure {
+  aspect-ratio: auto;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.paper-figure .paper-badge {
+  position: static;
+  align-self: flex-start;
+  margin: 5px 0 0 6px;
+}
+
+.paper-figure a { display: block; cursor: zoom-in; }
+
+.paper-figure .paper-thumb-img {
+  height: 106px;
+  padding: 3px 5px 5px;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
 }
 
 .paper-badge {
@@ -534,7 +558,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
     animation: page-enter 480ms ease both;
   }
 
-  .year-block > .papers-table td[valign="middle"][width="75%"] {
+  .year-block > .papers-table td {
     animation: card-rise 420ms ease both;
   }
 }
@@ -647,7 +671,7 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
     padding-right: 0 !important;
   }
 
-  table.papers-table td[valign="middle"][width="75%"] {
+  table.papers-table td {
     display: table-cell !important;
     width: auto !important;
     padding: 10px 10px !important;
@@ -663,8 +687,8 @@ table.papers-table td[valign="middle"][width="75%"] br + a ~ a:hover {
     font-size: 16px;
   }
 
-  table.papers-table td[valign="middle"][width="75%"] br + a,
-  table.papers-table td[valign="middle"][width="75%"] br + a ~ a {
+  table.papers-table td br + a,
+  table.papers-table td br + a ~ a {
     margin-bottom: 6px;
   }
 
